@@ -17,7 +17,7 @@ resource "aws_security_group" "instance" {
         }
     ]
 
-resource "aws_instance" {
+resource "aws_instance" "example" {
     ami = "ami-0c55b159cdfafe1f0"
     instance_type = "t2.micro"
     vpc_security_group_ids = [aws_security_group.instance.id]
@@ -31,6 +31,11 @@ resource "aws_instance" {
         Name = "terraform-example"
     }
 }
+
+
+output "public_ip" {
+    value = aws_instance.example.public_ip
+    description = "The public ip address of the web server"
 
 
 
